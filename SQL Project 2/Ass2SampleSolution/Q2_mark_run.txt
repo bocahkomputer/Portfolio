@@ -1,0 +1,384 @@
+SQL> --=============================  NOTE ==============================================---
+SQL> -- Task 2 and Task 3 were marked using the data from the markers insert (task 1A) ONLY
+SQL> -- the changes made for task 1b were excluded
+SQL> -- At this point in the marking the students loaded data from Task 1 was removed and
+SQL> -- replaced with the marking data (sample solution file Q1a-mau-insert.sql)
+SQL> --==================================================================================---
+SQL> 
+SQL> --============================== START Q2 RUN ======================================---
+SQL> ------------- Question 2 Queries -----------------------------------------------
+SQL> ---- Note: max of 50% of grade if no rows returned -----------------------------
+SQL> @Q2-mau-queries.sql
+SQL> -- FIT2094 Assignment 2 2020 S2
+SQL> -- Sample Solution
+SQL> 
+SQL> /*
+SQL>TASK 2: SQL Queries 
+SQL>Your answers for these tasks must be placed in the supplied SQL Script Q2-mau-queries.sql
+SQL>ANSI joins must be used where two or more tables are to be joined, under no circumstances can "implicit join notation" be used - see the week 7 workshop slide 22
+SQL>and tutorial
+SQL>*/
+SQL> 
+SQL> 
+SQL> /*
+SQL>(i)
+SQL>*/
+SQL> SELECT
+  2      artist_code         "Artist Code",
+  3      ltrim(artist_gname
+  4            || ' '
+  5            || artist_fname)    "Artist Name",
+  6      CASE
+  7          WHEN artist_state = 'VIC' THEN
+  8              'Victoria'
+  9          WHEN artist_state = 'NSW' THEN
+ 10              'New South Wales'
+ 11          WHEN artist_state = 'WA' THEN
+ 12              'Western Australia'
+ 13      END                 "Artist State"
+ 14  FROM
+ 15      artist
+ 16  WHERE artist_state IN ('VIC', 'NSW', 'WA') and
+ 17  (artist_gname IS NULL
+ 18        OR artist_fname IS NULL OR artist_phone is null)
+ 19  ORDER BY
+ 20      "Artist Name", artist_code;
+
+Artist Code Artist Name                                                                                           Artist State     
+----------- ----------------------------------------------------------------------------------------------------- -----------------
+         20 Adrianna Dugget                                                                                       Victoria         
+         10 Dorette                                                                                               Victoria         
+         17 Duddy                                                                                                 Victoria         
+         15 Maggi Aaronsohn                                                                                       Western Australia
+         13 Nicklinson                                                                                            New South Wales  
+          4 Rosalinda Zavattiero                                                                                  Victoria         
+
+6 rows selected. 
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*
+SQL>(ii)
+SQL>*/
+SQL> SELECT
+  2      arw.artist_code                                         "Artist Code",
+  3      ltrim(art.artist_gname
+  4            || ' '
+  5            || art.artist_fname)                                    "Artist Name",
+  6      arw.artwork_no                                          AS "Artwork No.",
+  7      arw.artwork_title                                       AS "Artwork Title",
+  8      lpad('$' || ltrim(to_char(arw.artwork_minpayment, '9999990.99')), 23)             AS "Artwork Min. Payment",
+  9      floor(aws.aws_date_time - artwork_submitdate)       AS "Number of Days with MAU"
+ 10  FROM
+ 11           artwork arw
+ 12      JOIN artist     art ON arw.artist_code = art.artist_code
+ 13      JOIN aw_status  aws ON arw.artist_code = aws.artist_code
+ 14                            AND arw.artwork_no = aws.artwork_no
+ 15  WHERE
+ 16          aws.aws_action = 'R'
+ 17      AND floor(aws.aws_date_time - artwork_submitdate) <= 120 /*floor(aws.aws_date_time - artwork_submitdate) -1 < 120 THIS WAS INITIALLY DONE WHICH IS ALSO CORRECT*/ 
+ 18      AND ( arw.artist_code, arw.artwork_no ) NOT IN (
+ 19          SELECT DISTINCT
+ 20              artist_code, artwork_no
+ 21          FROM
+ 22              aw_display
+ 23      )
+ 24  ORDER BY
+ 25      arw.artist_code,
+ 26      "Number of Days with MAU" DESC;
+
+Artist Code Artist Name                                                                                           Artwork No. Artwork Title                                                                                        Artwork Min. Payment    Number of Days with MAU
+----------- ----------------------------------------------------------------------------------------------------- ----------- ---------------------------------------------------------------------------------------------------- ----------------------- -----------------------
+          7 Weston Stearndale                                                                                               2 Saint Francis of Assisi                                                                                            $34536.90                      60
+
+SQL> 
+SQL> /*
+SQL>(iii)
+SQL>*/
+SQL> SELECT
+  2      arw.artist_code                                                    AS "Artist Code",
+  3      arw.artwork_no                                                     AS "Artwork No.",
+  4      arw.artwork_title                                                  AS "Artwork Title",
+  5      gal.gallery_id                                                     AS "Gallery ID",
+  6      gal.gallery_name                                                   AS "Gallery Name",
+  7      to_char(aw_display_start_date,'Dy DD Month YYYY')                  AS "Display Start Date",
+  8      floor(awd.aw_display_end_date - awd.aw_display_start_date)         AS "Number of Days in Gallery"
+  9  FROM
+ 10           artwork arw
+ 11      JOIN aw_display  awd ON arw.artist_code = awd.artist_code
+ 12                             AND arw.artwork_no = awd.artwork_no
+ 13      JOIN gallery     gal ON awd.gallery_id = gal.gallery_id
+ 14  WHERE
+ 15      awd.aw_display_end_date < sysdate - 1 and
+ 16      floor(awd.aw_display_end_date - awd.aw_display_start_date) < 13
+ 17  ORDER BY
+ 18      arw.artist_code,
+ 19      arw.artwork_no,
+ 20      "Number of Days in Gallery",
+ 21      gal.gallery_id,
+ 22      aw_display_start_date;
+
+Artist Code Artwork No. Artwork Title                                                                                        Gallery ID Gallery Name                                                                                         Display Start Date                                        Number of Days in Gallery
+----------- ----------- ---------------------------------------------------------------------------------------------------- ---------- ---------------------------------------------------------------------------------------------------- --------------------------------------------------------- -------------------------
+          1           1 The Creation of Adam                                                                                          2 Artology                                                                                             Fri 14 June      2019                                                             1
+          1           2 Luncheon of the Boating Party                                                                                 5 Art Temple                                                                                           Sun 05 July      2020                                                             5
+          1           2 Luncheon of the Boating Party                                                                                 5 Art Temple                                                                                           Tue 21 July      2020                                                             5
+          2           1 The Starry Night                                                                                              2 Artology                                                                                             Fri 14 June      2019                                                             6
+          2           1 The Starry Night                                                                                              5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+          3           1 Saint Francis of Assisi                                                                                       2 Artology                                                                                             Fri 14 June      2019                                                             2
+          4           1 The Last Supper                                                                                               2 Artology                                                                                             Fri 14 June      2019                                                             5
+          5           1 The Lady of Shalott                                                                                           5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+          8           1 Girl with a Pearl Earring                                                                                     2 Artology                                                                                             Fri 14 June      2019                                                             6
+          8           1 Girl with a Pearl Earring                                                                                     5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+          9           1 The Mystic                                                                                                    5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+         10           1 The Scientist                                                                                                 5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+         19           1 The Astronomer                                                                                                5 Art Temple                                                                                           Thu 07 November  2019                                                             5
+         21           1 Inner World                                                                                                   5 Art Temple                                                                                           Thu 07 November  2019                                                            12
+
+14 rows selected. 
+
+SQL> 
+SQL> 
+SQL> /*
+SQL>(iv)
+SQL>*/
+SQL> SELECT
+  2      artist_code AS "Artist Code",
+  3      artwork_no AS "Artwork No.",
+  4      artwork_title AS "Artwork Title",
+  5      COUNT(*) AS "Number of Movements"
+  6  FROM
+  7           aw_status
+  8      NATURAL JOIN artwork
+  9  WHERE
+ 10      aws_action = 'T'
+ 11  GROUP BY
+ 12      artist_code,
+ 13      artwork_no,
+ 14      artwork_title
+ 15  HAVING
+ 16      COUNT(*) < (
+ 17          SELECT
+ 18              AVG(COUNT(*))
+ 19          FROM
+ 20              aw_status
+ 21          WHERE
+ 22              aws_action = 'T'
+ 23          GROUP BY
+ 24              artist_code,
+ 25              artwork_no
+ 26      )
+ 27  ORDER BY
+ 28      "Number of Movements",
+ 29      artist_code,
+ 30      artwork_no;
+
+Artist Code Artwork No. Artwork Title                                                                                        Number of Movements
+----------- ----------- ---------------------------------------------------------------------------------------------------- -------------------
+          1           1 The Creation of Adam                                                                                                   1
+          3           1 Saint Francis of Assisi                                                                                                1
+          4           1 The Last Supper                                                                                                        1
+          5           2 The Sojourn                                                                                                            1
+         19           1 The Astronomer                                                                                                         1
+          5           1 The Lady of Shalott                                                                                                    2
+          8           2 Cafe Terrace at Night                                                                                                  2
+          9           1 The Mystic                                                                                                             2
+         10           1 The Scientist                                                                                                          2
+         21           1 Inner World                                                                                                            2
+
+10 rows selected. 
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*
+SQL>(v)
+SQL>*/
+SQL> SELECT
+  2      lpad(to_char(art.artist_code, '9999'), 10)              AS "Artist Code",
+  3      art.artwork_title                                     AS "Artwork Title",
+  4      lpad('$'
+  5           || ltrim(to_char(ceil(art.artwork_minpayment /(1 -((
+  6          SELECT
+  7              gallery_sale_percent
+  8          FROM
+  9              gallery
+ 10          WHERE
+ 11              gallery_id = 1
+ 12      ) / 100 +(20 / 100)))),
+ 13                            '9999999')),
+ 14           30)                                              AS "Min. Sale Price Est. (Gallery 1)",
+ 15      lpad('$'
+ 16           || ltrim(to_char(ceil(art.artwork_minpayment /(1 -((
+ 17          SELECT
+ 18              gallery_sale_percent
+ 19          FROM
+ 20              gallery
+ 21          WHERE
+ 22              gallery_id = 2
+ 23      ) / 100 +(20 / 100)))),
+ 24                            '9999999')),
+ 25           30)                                              AS "Min. Sale Price Est. (Gallery 2)",
+ 26      lpad('$'
+ 27           || ltrim(to_char(round(art.artwork_minpayment /(1 -((
+ 28          SELECT
+ 29              gallery_sale_percent
+ 30          FROM
+ 31              gallery
+ 32          WHERE
+ 33              gallery_id = 3
+ 34      ) / 100 +(20 / 100))),
+ 35                                  2),
+ 36                            '9999999')),
+ 37           30)                                              AS "Min. Sale Price Est. (Gallery 3)",
+ 38      lpad('$'
+ 39           || ltrim(to_char(ceil(art.artwork_minpayment /(1 -((
+ 40          SELECT
+ 41              gallery_sale_percent
+ 42          FROM
+ 43              gallery
+ 44          WHERE
+ 45              gallery_id = 4
+ 46      ) / 100 +(20 / 100)))),
+ 47                            '9999999')),
+ 48           30)                                              AS "Min. Sale Price Est. (Gallery 4)",
+ 49      lpad('$'
+ 50           || ltrim(to_char(ceil(art.artwork_minpayment /(1 -((
+ 51          SELECT
+ 52              gallery_sale_percent
+ 53          FROM
+ 54              gallery
+ 55          WHERE
+ 56              gallery_id = 5
+ 57      ) / 100 +(20 / 100)))),
+ 58                            '9999999')),
+ 59           30)                                              AS "Min. Sale Price Est. (Gallery 5)"
+ 60  FROM
+ 61      artwork art
+ 62  WHERE
+ 63      ( art.artist_code, art.artwork_no ) NOT IN (
+ 64          SELECT
+ 65              artist_code, artwork_no
+ 66          FROM
+ 67              aw_display
+ 68          WHERE
+ 69              aw_display_id IN (
+ 70                  SELECT
+ 71                      aw_display_id
+ 72                  FROM
+ 73                      sale
+ 74              )
+ 75      )
+ 76      AND ( art.artist_code, art.artwork_no ) NOT IN (
+ 77          SELECT
+ 78              artist_code, artwork_no
+ 79          FROM
+ 80              aw_status
+ 81          WHERE
+ 82              aws_action = 'R'
+ 83      )
+ 84  ORDER BY
+ 85      art.artist_code,
+ 86      art.artwork_title;
+
+Artist Cod Artwork Title                                                                                        Min. Sale Price Est. (Gallery  Min. Sale Price Est. (Gallery  Min. Sale Price Est. (Gallery  Min. Sale Price Est. (Gallery  Min. Sale Price Est. (Gallery 
+---------- ---------------------------------------------------------------------------------------------------- ------------------------------ ------------------------------ ------------------------------ ------------------------------ ------------------------------
+         1 Luncheon of the Boating Party                                                                                                $19490                         $20804                         $20000                         $20597                         $20864
+         2 The Starry Night                                                                                                             $74463                         $79484                         $76414                         $78694                         $79713
+         5 The Lady of Shalott                                                                                                          $60484                         $64563                         $62069                         $63921                         $64749
+         5 The Sojourn                                                                                                                  $62770                         $67003                         $64414                         $66336                         $67195
+         7 Sunday Afternoon on an Island                                                                                                $17339                         $18508                         $17793                         $18324                         $18562
+         8 Cafe Terrace at Night                                                                                                        $61291                         $65424                         $62897                         $64774                         $65613
+         8 Girl with a Pearl Earring                                                                                                    $31049                         $33143                         $31862                         $32813                         $33238
+         9 The Mystic                                                                                                                   $45699                         $48781                         $46897                         $48296                         $48921
+        10 The Scientist                                                                                                                $32259                         $34434                         $33103                         $34091                         $34533
+        21 Inner World                                                                                                                 $121573                        $129771                        $124759                        $128481                        $130144
+
+10 rows selected. 
+
+SQL> 
+SQL> 
+SQL> /*
+SQL>(vi)
+SQL>*/
+SQL> 
+SQL> SELECT
+  2      lpad(to_char(arw.artist_code,'9999'),10) as "Artist Code",
+  3      ltrim(art.artist_gname
+  4            || ' '
+  5            || art.artist_fname)                                    AS "Artist Full Name",
+  6      arw.artwork_title                                       AS "Artwork Title",
+  7      lpad(to_char(gal.gallery_id,'999'),9)                                          "Gallery ID",
+  8      lpad(to_char(sal.sale_price, '$999999'), 11)             "Sale Price",
+  9      lpad(round(((sal.sale_price -(ceil(arw.artwork_minpayment /(1 -((
+ 10          SELECT
+ 11              gallery_sale_percent
+ 12          FROM
+ 13              gallery
+ 14          WHERE
+ 15              gallery_id = gal.gallery_id
+ 16      ) / 100 +(20 / 100)))))) /(ceil(arw.artwork_minpayment /(1 -((
+ 17          SELECT
+ 18              gallery_sale_percent
+ 19          FROM
+ 20              gallery
+ 21          WHERE
+ 22              gallery_id = gal.gallery_id
+ 23      ) / 100 +(20 / 100)))))) * 100,
+ 24                 1)
+ 25           || '%',
+ 26           29)                                                AS "% Sold Above Min. Sell Price"
+ 27  FROM
+ 28           artist art
+ 29      JOIN artwork     arw ON art.artist_code = arw.artist_code
+ 30      JOIN aw_display  exh ON exh.artist_code = arw.artist_code
+ 31                             AND exh.artwork_no = arw.artwork_no
+ 32      JOIN gallery     gal ON gal.gallery_id = exh.gallery_id
+ 33      JOIN sale        sal ON sal.aw_display_id = exh.aw_display_id
+ 34  UNION
+ 35  ( SELECT
+ 36      ' ---------', 
+ 37      ' ----------------------- ',
+ 38      ' ----------------------- ',
+ 39      ' --------',
+ 40      lpad('AVERAGE:', 11),
+ 41      lpad(to_char(AVG((sal.sale_price -(ceil(arw.artwork_minpayment /(1 -((
+ 42          SELECT
+ 43              gallery_sale_percent
+ 44          FROM
+ 45              gallery
+ 46          WHERE
+ 47              gallery_id = gal.gallery_id
+ 48      ) / 100 +(20 / 100)))))) /(ceil(arw.artwork_minpayment /(1 -((
+ 49          SELECT
+ 50              gallery_sale_percent
+ 51          FROM
+ 52              gallery
+ 53          WHERE
+ 54              gallery_id = gal.gallery_id
+ 55      ) / 100 +(20 / 100))))) * 100),
+ 56                   '999.9')
+ 57           || '%',
+ 58           29) AS "% Sold Above Min. Sell Price"
+ 59  FROM
+ 60           artist art
+ 61      JOIN artwork     arw ON art.artist_code = arw.artist_code
+ 62      JOIN aw_display  exh ON exh.artist_code = arw.artist_code
+ 63                             AND exh.artwork_no = arw.artwork_no
+ 64      JOIN gallery     gal ON gal.gallery_id = exh.gallery_id
+ 65      JOIN sale        sal ON sal.aw_display_id = exh.aw_display_id
+ 66  );
+
+Artist Cod Artist Full Name                                                                                      Artwork Title                                                                                        Gallery I Sale Price  % Sold Above Min. Sell Price 
+---------- ----------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------- ----------- -----------------------------
+         1 Martainn Jenteau                                                                                      The Creation of Adam                                                                                         2      $49000                         13.8%
+         3 Jessi Allward                                                                                         Saint Francis of Assisi                                                                                      2      $38000                          8.1%
+         4 Rosalinda Zavattiero                                                                                  The Last Supper                                                                                              2      $32000                         24.6%
+        19 Patten Martyn                                                                                         The Astronomer                                                                                               5      $60000                         22.6%
+ ---------  -----------------------                                                                               -----------------------                                                                              --------    AVERAGE:                         17.3%
+
+SQL> 
+SQL> set echo on
+SQL> --============================== END Q2 RUN ======================================---
+SQL> set echo off

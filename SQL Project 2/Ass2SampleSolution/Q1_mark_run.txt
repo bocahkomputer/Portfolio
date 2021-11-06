@@ -1,0 +1,1314 @@
+SQL> ------------- Question 1a  Insert data -----------------------------------------
+SQL> @Q1a-mau-insert.sql
+SQL> --- FIT2094 Assignment 2 2020 S2
+SQL> -- Sample Solution
+SQL> 
+SQL> /*
+SQL>(a) Load selected tables with your own additional test data using the supplied Q1a-mau-insert.sql script file, and SQL commands which will insert, as a minimum,
+SQL>the following sample data -
+SQL>15 ARTWORKs
+SQL>10 EXHIBITs
+SQL>2 SALEs, and
+SQL>the required AW_STATUS entries to support the ARTWORK, EXHIBIT and SALE data you add.
+SQL>*/
+SQL> 
+SQL> --------------------------------------
+SQL> --INSERT INTO artwork
+SQL> --------------------------------------
+SQL> INSERT INTO artwork VALUES (1, 1, 'The Creation of Adam', 30000, TO_DATE('2-Jan-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 1;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (2, 1, 'The Starry Night', 55400, TO_DATE('10-Jan-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 2;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (3, 1, 'Saint Francis of Assisi', 24500, TO_DATE('3-Feb-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 3;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (4, 1, 'The Last Supper', 17900, TO_DATE('23-Feb-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 4;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (7, 1, 'Sunday Afternoon on an Island', 12900, TO_DATE('4-Mar-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 7;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (8, 1, 'Girl with a Pearl Earring', 23100, TO_DATE('7-Jun-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 8;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (5, 1, 'The Lady of Shalott', 45000, TO_DATE('15-Aug-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 5;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (9, 1, 'The Mystic', 34000, TO_DATE('14-Sep-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 9;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (10, 1, 'The Scientist', 24000, TO_DATE('20-Sep-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 10;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (21, 1, 'Inner World', 90450, TO_DATE('20-Sep-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 21;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (19, 1, 'The Astronomer', 34000, TO_DATE('1-Nov-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 19;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (1, 2, 'Luncheon of the Boating Party', 14500, TO_DATE('18-Nov-2019', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 1;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (7, 2, 'Saint Francis of Assisi', 34536.9, TO_DATE('4-Jan-2020', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 7;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (8, 2, 'Cafe Terrace at Night', 45600.35, TO_DATE('18-Feb-2020', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 8;
+
+1 row updated.
+
+SQL> INSERT INTO artwork VALUES (5, 2, 'The Sojourn', 46700.45, TO_DATE('23-Feb-2020', 'DD-MON-YYYY'));
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks + 1 WHERE artist_code = 5;
+
+1 row updated.
+
+SQL> 
+SQL> 
+SQL> --------------------------------------
+SQL> --INSERT INTO aw_display
+SQL> --------------------------------------
+SQL> INSERT INTO aw_display VALUES (1, 1, 1, TO_DATE('14-Jun-2019', 'DD-MON-YYYY'), TO_DATE('20-Jun-2019', 'DD-MON-YYYY'), 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (2, 2, 1, TO_DATE('14-Jun-2019', 'DD-MON-YYYY'), TO_DATE('20-Jun-2019', 'DD-MON-YYYY'), 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (3, 3, 1, TO_DATE('14-Jun-2019', 'DD-MON-YYYY'), TO_DATE('20-Jun-2019', 'DD-MON-YYYY'), 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (4, 4, 1, TO_DATE('14-Jun-2019', 'DD-MON-YYYY'), TO_DATE('20-Jun-2019', 'DD-MON-YYYY'), 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (5, 8, 1, TO_DATE('14-Jun-2019', 'DD-MON-YYYY'), TO_DATE('20-Jun-2019', 'DD-MON-YYYY'), 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (6, 2, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (7, 8, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (8, 5, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (9, 9, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (10, 10, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (11, 21, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (12, 19, 1, TO_DATE('7-Nov-2019', 'DD-MON-YYYY'), TO_DATE('19-Nov-2019', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (13, 2, 1, TO_DATE('5-July-2020', 'DD-MON-YYYY'), TO_DATE('18-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (14, 8, 1, TO_DATE('5-July-2020', 'DD-MON-YYYY'), TO_DATE('18-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (15, 1, 2, TO_DATE('5-July-2020', 'DD-MON-YYYY'), TO_DATE('10-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (16, 8, 2, TO_DATE('5-July-2020', 'DD-MON-YYYY'), TO_DATE('18-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (17, 5, 2, TO_DATE('5-July-2020', 'DD-MON-YYYY'), TO_DATE('18-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_display VALUES (18, 1, 2, TO_DATE('21-July-2020', 'DD-MON-YYYY'), TO_DATE('26-Jul-2020', 'DD-MON-YYYY'), 5);
+
+1 row inserted.
+
+SQL> 
+SQL> --------------------------------------
+SQL> --INSERT INTO aw_status
+SQL> --------------------------------------
+SQL> INSERT INTO aw_status VALUES (1, 1, 1, TO_DATE('2-Jan-2019 16:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (2, 2, 1, TO_DATE('10-Jan-2019 12:30', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (3, 3, 1, TO_DATE('3-Feb-2019 11:45', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (4, 4, 1, TO_DATE('23-Feb-2019 16:45', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (5, 7, 1, TO_DATE('4-Mar-2019 13:05', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (6, 8, 1, TO_DATE('7-Jun-2019 11:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (7, 1, 1, TO_DATE('13-Jun-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (8, 2, 1, TO_DATE('13-Jun-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (9, 3, 1, TO_DATE('13-Jun-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (10, 4, 1, TO_DATE('13-Jun-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (11, 8, 1, TO_DATE('13-Jun-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (12, 1, 1, TO_DATE('13-Jun-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'G', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (13, 2, 1, TO_DATE('13-Jun-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'G', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (14, 3, 1, TO_DATE('13-Jun-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'G', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (15, 4, 1, TO_DATE('13-Jun-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'G', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (16, 8, 1, TO_DATE('13-Jun-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'G', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (17, 1, 1, TO_DATE('15-Jun-2019 13:08', 'DD-MON-YYYY HH24:MI'), 'S', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (18, 3, 1, TO_DATE('16-Jun-2019 13:02', 'DD-MON-YYYY HH24:MI'), 'S', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (19, 4, 1, TO_DATE('19-Jun-2019 13:03', 'DD-MON-YYYY HH24:MI'), 'S', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (20, 2, 1, TO_DATE('21-Jun-2019 11:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (21, 8, 1, TO_DATE('21-Jun-2019 11:00', 'DD-MON-YYYY HH24:MI'), 'T', 2);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (22, 2, 1, TO_DATE('21-Jun-2019 14:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (23, 8, 1, TO_DATE('21-Jun-2019 14:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (24, 5, 1, TO_DATE('15-Aug-2019 11:08', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (25, 9, 1, TO_DATE('14-Sep-2019 12:07', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (26, 10, 1, TO_DATE('20-Sep-2019 18:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (27, 21, 1, TO_DATE('20-Sep-2019 13:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (28, 19, 1, TO_DATE('1-Nov-2019 13:07', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (29, 2, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (30, 8, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (31, 5, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (32, 9, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (33, 10, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (34, 21, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (35, 19, 1, TO_DATE('6-Nov-2019 10:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (36, 2, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (37, 8, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (38, 5, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (39, 9, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (40, 10, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (41, 21, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (42, 19, 1, TO_DATE('6-Nov-2019 11:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (43, 19, 1, TO_DATE('12-Nov-2019 14:30', 'DD-MON-YYYY HH24:MI'), 'S', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (44, 1, 2, TO_DATE('18-Nov-2019 11:05', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (45, 2, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (46, 8, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (47, 5, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (48, 9, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (49, 10, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (50, 21, 1, TO_DATE('19-Nov-2019 19:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (51, 2, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (52, 8, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (53, 5, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (54, 9, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (55, 10, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (56, 21, 1, TO_DATE('19-Nov-2019 21:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (57, 7, 2, TO_DATE('4-Jan-2020 14:15', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (58, 8, 2, TO_DATE('18-Feb-2020 16:30', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (59, 5, 2, TO_DATE('23-Feb-2020 11:50', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (60, 7, 2, TO_DATE('4-Mar-2020 12:35', 'DD-MON-YYYY HH24:MI'), 'R', null);
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks - 1 WHERE artist_code = 7;
+
+1 row updated.
+
+SQL> INSERT INTO aw_status VALUES (61, 2, 1, TO_DATE('4-July-2020 9:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (62, 8, 1, TO_DATE('4-July-2020 9:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (63, 1, 2, TO_DATE('4-July-2020 9:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (64, 8, 2, TO_DATE('4-July-2020 9:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (65, 5, 2, TO_DATE('4-July-2020 9:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (66, 2, 1, TO_DATE('4-July-2020 10:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (67, 8, 1, TO_DATE('4-July-2020 10:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (68, 1, 2, TO_DATE('4-July-2020 10:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (69, 8, 2, TO_DATE('4-July-2020 10:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (70, 5, 2, TO_DATE('4-July-2020 10:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (71, 1, 2, TO_DATE('10-July-2020 20:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (72, 1, 2, TO_DATE('10-July-2020 22:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (73, 2, 1, TO_DATE('18-July-2020 20:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (74, 8, 1, TO_DATE('18-July-2020 20:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (75, 8, 2, TO_DATE('18-July-2020 20:30', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (76, 2, 1, TO_DATE('18-July-2020 22:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (77, 8, 1, TO_DATE('18-July-2020 22:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (78, 8, 2, TO_DATE('18-July-2020 22:00', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (79, 1, 2, TO_DATE('21-July-2020 08:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (80, 1, 2, TO_DATE('21-July-2020 09:30', 'DD-MON-YYYY HH24:MI'), 'G', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (81, 1, 2, TO_DATE('26-July-2020 17:00', 'DD-MON-YYYY HH24:MI'), 'T', 5);
+
+1 row inserted.
+
+SQL> INSERT INTO aw_status VALUES (82, 1, 2, TO_DATE('27-July-2020 18:30', 'DD-MON-YYYY HH24:MI'), 'W', null);
+
+1 row inserted.
+
+SQL> 
+SQL> --------------------------------------
+SQL> --INSERT INTO sale
+SQL> --------------------------------------
+SQL> INSERT INTO sale VALUES (1, TO_DATE('15-Jun-2019', 'DD-MON-YYYY'), 49000.00, 1, 1);
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks - 1 WHERE artist_code = 1;
+
+1 row updated.
+
+SQL> UPDATE aw_display SET aw_display_end_date = TO_DATE('15-Jun-2019', 'DD-MON-YYYY') WHERE aw_display_id = 1;
+
+1 row updated.
+
+SQL> INSERT INTO sale VALUES (2, TO_DATE('16-Jun-2019', 'DD-MON-YYYY'), 38000.00, 3, 3);
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks - 1 WHERE artist_code = 3;
+
+1 row updated.
+
+SQL> UPDATE aw_display SET aw_display_end_date = TO_DATE('16-Jun-2019', 'DD-MON-YYYY') WHERE aw_display_id = 3;
+
+1 row updated.
+
+SQL> INSERT INTO sale VALUES (3, TO_DATE('19-Jun-2019', 'DD-MON-YYYY'), 32000.00, 7, 4);
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks - 1 WHERE artist_code = 4;
+
+1 row updated.
+
+SQL> UPDATE aw_display SET aw_display_end_date = TO_DATE('19-Jun-2019', 'DD-MON-YYYY') WHERE aw_display_id = 4;
+
+1 row updated.
+
+SQL> INSERT INTO sale VALUES (4, TO_DATE('12-Nov-2019', 'DD-MON-YYYY'), 60000.00, 7, 12);
+
+1 row inserted.
+
+SQL> UPDATE artist SET artist_noworks = artist_noworks - 1 WHERE artist_code = 19;
+
+1 row updated.
+
+SQL> UPDATE aw_display SET aw_display_end_date = TO_DATE('12-Nov-2019', 'DD-MON-YYYY') WHERE aw_display_id = 12;
+
+1 row updated.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> set echo on
+SQL> -- Check INSERT Count
+SQL> ---------------------
+SQL> set echo off
+
+Table Loaded           COUNT(*)
+-------------------- ----------
+1. ARTWORK Rows:             15
+2. AW_DISPLAY Rows:          18
+3. SALE Rows:                 4
+
+SQL> -- EXPLICIT checks
+SQL> --
+SQL> -- Check INSERT Data
+SQL> ---------------------
+SQL> set echo off
+SQL> -- ARTWORK
+SQL> set echo off
+
+ARTIST_CODE ARTWORK_NO ARTWORK_TITLE                                                MINPAYMENT  SUBMITDATE          
+----------- ---------- ------------------------------------------------------------ ----------- --------------------
+          1          1 The Creation of Adam                                            30000.00 02-Jan-2019         
+          2          1 The Starry Night                                                55400.00 10-Jan-2019         
+          3          1 Saint Francis of Assisi                                         24500.00 03-Feb-2019         
+          4          1 The Last Supper                                                 17900.00 23-Feb-2019         
+          7          1 Sunday Afternoon on an Island                                   12900.00 04-Mar-2019         
+          8          1 Girl with a Pearl Earring                                       23100.00 07-Jun-2019         
+          5          1 The Lady of Shalott                                             45000.00 15-Aug-2019         
+          9          1 The Mystic                                                      34000.00 14-Sep-2019         
+         10          1 The Scientist                                                   24000.00 20-Sep-2019         
+         21          1 Inner World                                                     90450.00 20-Sep-2019         
+         19          1 The Astronomer                                                  34000.00 01-Nov-2019         
+          1          2 Luncheon of the Boating Party                                   14500.00 18-Nov-2019         
+          7          2 Saint Francis of Assisi                                         34536.90 04-Jan-2020         
+          8          2 Cafe Terrace at Night                                           45600.35 18-Feb-2020         
+          5          2 The Sojourn                                                     46700.45 23-Feb-2020         
+
+15 rows selected. 
+
+columns cleared
+SQL> -- AW_DISPLAY
+SQL> set echo off
+
+AW_DISPLAY_ID ARTIST_CODE ARTWORK_NO DISPLAY_START       
+------------- ----------- ---------- --------------------
+            1           1          1 14-Jun-2019         
+            2           2          1 14-Jun-2019         
+            3           3          1 14-Jun-2019         
+            4           4          1 14-Jun-2019         
+            5           8          1 14-Jun-2019         
+            6           2          1 07-Nov-2019         
+            7           8          1 07-Nov-2019         
+            8           5          1 07-Nov-2019         
+            9           9          1 07-Nov-2019         
+           10          10          1 07-Nov-2019         
+           11          21          1 07-Nov-2019         
+           12          19          1 07-Nov-2019         
+           13           2          1 05-Jul-2020         
+           14           8          1 05-Jul-2020         
+           15           1          2 05-Jul-2020         
+           16           8          2 05-Jul-2020         
+           17           5          2 05-Jul-2020         
+           18           1          2 21-Jul-2020         
+
+18 rows selected. 
+
+SQL> -- SALE
+SQL> set echo off
+
+   SALE_ID SALE_DATE            SALE_PRICE
+---------- -------------------- ----------
+         1 15-Jun-2019               49000
+         2 16-Jun-2019               38000
+         3 19-Jun-2019               32000
+         4 12-Nov-2019               60000
+
+SQL> -- Number of distinct artists
+SQL> set echo off
+
+Count different artists submitted
+---------------------------------
+                               11
+
+SQL> -- Dates within required range
+SQL> set echo off
+
+Artwork Submitted Date Outside Date Range Display Start Date Outside Date Range Status Date Outside Date Range
+----------------------------------------- ------------------------------------- ------------------------------
+                                        0                                     0                              0
+
+
+Date Type           Outside Date Range
+------------------- ------------------
+Display End Date                     0
+Display Start Date                   0
+
+SQL> -- Galleries hosting displays
+SQL> set echo off
+
+Number of Galleries hosting displays Different display start dates      
+------------------------------------ -----------------------------------
+                                   2 3 or more Different start dates    
+
+SQL> -- AW_DISPLAY
+SQL> -- Check start end date for display
+SQL> set echo off
+
+AW_DISPLAY_ID ARTIST_CODE ARTWORK_NO GALLERY_ID DISPLAY_START        DISPLAY_END          NUMBER DAYS DISPLAYED START_END_CHECK 
+------------- ----------- ---------- ---------- -------------------- -------------------- --------------------- ----------------
+            3           3          1          2 14-Jun-2019          16-Jun-2019                              3 Valid Start/End 
+            2           2          1          2 14-Jun-2019          20-Jun-2019                              7 Valid Start/End 
+            1           1          1          2 14-Jun-2019          15-Jun-2019                              2 Valid Start/End 
+            4           4          1          2 14-Jun-2019          19-Jun-2019                              6 Valid Start/End 
+            5           8          1          2 14-Jun-2019          20-Jun-2019                              7 Valid Start/End 
+            8           5          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+            7           8          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+            6           2          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+            9           9          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+           12          19          1          5 07-Nov-2019          12-Nov-2019                              6 Valid Start/End 
+           11          21          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+           10          10          1          5 07-Nov-2019          19-Nov-2019                             13 Valid Start/End 
+           13           2          1          5 05-Jul-2020          18-Jul-2020                             14 Valid Start/End 
+           14           8          1          5 05-Jul-2020          18-Jul-2020                             14 Valid Start/End 
+           17           5          2          5 05-Jul-2020          18-Jul-2020                             14 Valid Start/End 
+           16           8          2          5 05-Jul-2020          18-Jul-2020                             14 Valid Start/End 
+           15           1          2          5 05-Jul-2020          10-Jul-2020                              6 Valid Start/End 
+           18           1          2          5 21-Jul-2020          26-Jul-2020                              6 Valid Start/End 
+
+18 rows selected. 
+
+SQL> -- AW_STATUS check status time included
+SQL> set echo off
+
+    AWS_ID ARTIST_CODE ARTWORK_NO STATUS_DATE_TIME          
+---------- ----------- ---------- --------------------------
+         1           1          1 02-Jan-2019 16:00         
+         2           2          1 10-Jan-2019 12:30         
+         3           3          1 03-Feb-2019 11:45         
+         4           4          1 23-Feb-2019 16:45         
+         5           7          1 04-Mar-2019 13:05         
+         6           8          1 07-Jun-2019 11:00         
+         7           1          1 13-Jun-2019 10:00         
+         8           2          1 13-Jun-2019 10:00         
+         9           3          1 13-Jun-2019 10:00         
+        10           4          1 13-Jun-2019 10:00         
+        11           8          1 13-Jun-2019 10:00         
+        12           1          1 13-Jun-2019 13:00         
+        13           2          1 13-Jun-2019 13:00         
+        14           3          1 13-Jun-2019 13:00         
+        15           4          1 13-Jun-2019 13:00         
+        16           8          1 13-Jun-2019 13:00         
+        17           1          1 15-Jun-2019 13:08         
+        18           3          1 16-Jun-2019 13:02         
+        19           4          1 19-Jun-2019 13:03         
+        20           2          1 21-Jun-2019 11:00         
+        21           8          1 21-Jun-2019 11:00         
+        22           2          1 21-Jun-2019 14:00         
+        23           8          1 21-Jun-2019 14:00         
+        24           5          1 15-Aug-2019 11:08         
+        25           9          1 14-Sep-2019 12:07         
+        26          10          1 20-Sep-2019 18:00         
+        27          21          1 20-Sep-2019 13:00         
+        28          19          1 01-Nov-2019 13:07         
+        29           2          1 06-Nov-2019 10:00         
+        30           8          1 06-Nov-2019 10:00         
+        31           5          1 06-Nov-2019 10:00         
+        32           9          1 06-Nov-2019 10:00         
+        33          10          1 06-Nov-2019 10:00         
+        34          21          1 06-Nov-2019 10:00         
+        35          19          1 06-Nov-2019 10:00         
+        36           2          1 06-Nov-2019 11:30         
+        37           8          1 06-Nov-2019 11:30         
+        38           5          1 06-Nov-2019 11:30         
+        39           9          1 06-Nov-2019 11:30         
+        40          10          1 06-Nov-2019 11:30         
+        41          21          1 06-Nov-2019 11:30         
+        42          19          1 06-Nov-2019 11:30         
+        43          19          1 12-Nov-2019 14:30         
+        44           1          2 18-Nov-2019 11:05         
+        45           2          1 19-Nov-2019 19:30         
+        46           8          1 19-Nov-2019 19:30         
+        47           5          1 19-Nov-2019 19:30         
+        48           9          1 19-Nov-2019 19:30         
+        49          10          1 19-Nov-2019 19:30         
+        50          21          1 19-Nov-2019 19:30         
+        51           2          1 19-Nov-2019 21:00         
+        52           8          1 19-Nov-2019 21:00         
+        53           5          1 19-Nov-2019 21:00         
+        54           9          1 19-Nov-2019 21:00         
+        55          10          1 19-Nov-2019 21:00         
+        56          21          1 19-Nov-2019 21:00         
+        57           7          2 04-Jan-2020 14:15         
+        58           8          2 18-Feb-2020 16:30         
+        59           5          2 23-Feb-2020 11:50         
+        60           7          2 04-Mar-2020 12:35         
+        61           2          1 04-Jul-2020 09:00         
+        62           8          1 04-Jul-2020 09:00         
+        63           1          2 04-Jul-2020 09:00         
+        64           8          2 04-Jul-2020 09:00         
+        65           5          2 04-Jul-2020 09:00         
+        66           2          1 04-Jul-2020 10:30         
+        67           8          1 04-Jul-2020 10:30         
+        68           1          2 04-Jul-2020 10:30         
+        69           8          2 04-Jul-2020 10:30         
+        70           5          2 04-Jul-2020 10:30         
+        71           1          2 10-Jul-2020 20:30         
+        72           1          2 10-Jul-2020 22:00         
+        73           2          1 18-Jul-2020 20:30         
+        74           8          1 18-Jul-2020 20:30         
+        75           8          2 18-Jul-2020 20:30         
+        76           2          1 18-Jul-2020 22:00         
+        77           8          1 18-Jul-2020 22:00         
+        78           8          2 18-Jul-2020 22:00         
+        79           1          2 21-Jul-2020 08:00         
+        80           1          2 21-Jul-2020 09:30         
+        81           1          2 26-Jul-2020 17:00         
+        82           1          2 27-Jul-2020 18:30         
+
+82 rows selected. 
+
+SQL> -- IMPLICIT checks
+SQL> -- Check Sale Price
+SQL> set echo off
+
+   SALE_ID SALE_DATE            SALE_PRICE GALLERY_COMMISSION MAU_COMMISSION ARTIST_PAID ARTWORK_MINPAYMENT PAYMENTSTATUS      
+---------- -------------------- ---------- ------------------ -------------- ----------- ------------------ -------------------
+         4 12-Nov-2019               60000               6300          12000       41700              34000 Valid Sale         
+         1 15-Jun-2019               49000               5047           9800       34153              30000 Valid Sale         
+         2 16-Jun-2019               38000               3914           7600       26486              24500 Valid Sale         
+         3 19-Jun-2019               32000               3296           6400       22304              17900 Valid Sale         
+
+SQL> -- Check AW_STATUS entries
+SQL> set echo off
+
+ARTIST_CODE ARTWORK_NO ARTWORK_TITLE                                      AWS_ACTIVITY               A GALLERY_ID
+----------- ---------- -------------------------------------------------- -------------------------- - ----------
+          1          1 The Creation of Adam                               02-Jan-2019 16:00          W           
+                                                                          13-Jun-2019 10:00          T          2
+                                                                          13-Jun-2019 13:00          G          2
+                                                                          15-Jun-2019 13:08          S           
+
+                     2 Luncheon of the Boating Party                      18-Nov-2019 11:05          W           
+                                                                          04-Jul-2020 09:00          T          5
+                                                                          04-Jul-2020 10:30          G          5
+                                                                          10-Jul-2020 20:30          T          5
+                                                                          10-Jul-2020 22:00          W           
+                                                                          21-Jul-2020 08:00          T          5
+                                                                          21-Jul-2020 09:30          G          5
+                                                                          26-Jul-2020 17:00          T          5
+                                                                          27-Jul-2020 18:30          W           
+
+          2          1 The Starry Night                                   10-Jan-2019 12:30          W           
+                                                                          13-Jun-2019 10:00          T          2
+                                                                          13-Jun-2019 13:00          G          2
+                                                                          21-Jun-2019 11:00          T          2
+                                                                          21-Jun-2019 14:00          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+                                                                          04-Jul-2020 09:00          T          5
+                                                                          04-Jul-2020 10:30          G          5
+                                                                          18-Jul-2020 20:30          T          5
+                                                                          18-Jul-2020 22:00          W           
+
+          3          1 Saint Francis of Assisi                            03-Feb-2019 11:45          W           
+                                                                          13-Jun-2019 10:00          T          2
+                                                                          13-Jun-2019 13:00          G          2
+                                                                          16-Jun-2019 13:02          S           
+
+          4          1 The Last Supper                                    23-Feb-2019 16:45          W           
+                                                                          13-Jun-2019 10:00          T          2
+                                                                          13-Jun-2019 13:00          G          2
+                                                                          19-Jun-2019 13:03          S           
+
+          5          1 The Lady of Shalott                                15-Aug-2019 11:08          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+
+                     2 The Sojourn                                        23-Feb-2020 11:50          W           
+                                                                          04-Jul-2020 09:00          T          5
+                                                                          04-Jul-2020 10:30          G          5
+
+          7          1 Sunday Afternoon on an Island                      04-Mar-2019 13:05          W           
+
+                     2 Saint Francis of Assisi                            04-Jan-2020 14:15          W           
+                                                                          04-Mar-2020 12:35          R           
+
+          8          1 Girl with a Pearl Earring                          07-Jun-2019 11:00          W           
+                                                                          13-Jun-2019 10:00          T          2
+                                                                          13-Jun-2019 13:00          G          2
+                                                                          21-Jun-2019 11:00          T          2
+                                                                          21-Jun-2019 14:00          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+                                                                          04-Jul-2020 09:00          T          5
+                                                                          04-Jul-2020 10:30          G          5
+                                                                          18-Jul-2020 20:30          T          5
+                                                                          18-Jul-2020 22:00          W           
+
+                     2 Cafe Terrace at Night                              18-Feb-2020 16:30          W           
+                                                                          04-Jul-2020 09:00          T          5
+                                                                          04-Jul-2020 10:30          G          5
+                                                                          18-Jul-2020 20:30          T          5
+                                                                          18-Jul-2020 22:00          W           
+
+          9          1 The Mystic                                         14-Sep-2019 12:07          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+
+         10          1 The Scientist                                      20-Sep-2019 18:00          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+
+         19          1 The Astronomer                                     01-Nov-2019 13:07          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          12-Nov-2019 14:30          S           
+
+         21          1 Inner World                                        20-Sep-2019 13:00          W           
+                                                                          06-Nov-2019 10:00          T          5
+                                                                          06-Nov-2019 11:30          G          5
+                                                                          19-Nov-2019 19:30          T          5
+                                                                          19-Nov-2019 21:00          W           
+
+
+82 rows selected. 
+
+breaks cleared
+columns cleared
+SQL> -- Check ARTIST COUNT of WORKS
+SQL> set echo off
+
+ARTIST_CODE ARTIST_GNAME         ARTIST_FNAME         ARTIST_NOWORKS ACTUAL_WORKS Validity_Check Number Work
+----------- -------------------- -------------------- -------------- ------------ --------------------------
+          1 Martainn             Jenteau                           1            1 Correct                   
+          2 Kipp                 Grellis                           1            1 Correct                   
+          3 Jessi                Allward                           0            0 Correct                   
+          4 Rosalinda            Zavattiero                        0            0 Correct                   
+          5 Neda                 Mylchreest                        2            2 Correct                   
+          6 Elga                 Yakolev                           0            0 Correct                   
+          7 Weston               Stearndale                        1            1 Correct                   
+          8 Reeba                Wildman                           2            2 Correct                   
+          9 Marlee               Champerlen                        1            1 Correct                   
+         10 Dorette                                                1            1 Correct                   
+         11 Westley              Oakenford                         0            0 Correct                   
+         12 Kilian               Moisey                            0            0 Correct                   
+         13                      Nicklinson                        0            0 Correct                   
+         14 Guendolen            Munks                             0            0 Correct                   
+         15 Maggi                Aaronsohn                         0            0 Correct                   
+         16 Maggy                Jindacek                          0            0 Correct                   
+         17                      Duddy                             0            0 Correct                   
+         18 Harli                Bard                              0            0 Correct                   
+         19 Patten               Martyn                            0            0 Correct                   
+         20 Adrianna             Dugget                            0            0 Correct                   
+         21 Wade                 Nutley                            1            1 Correct                   
+
+21 rows selected. 
+
+columns cleared
+SQL> ------------- Replace student data with marking data ------------------------------
+SQL> set echo off
+SQL> -------------- Data Replaced ------------------------------------------------------
+SQL> 
+SQL> ------------- Run student scripts --------------------------------------------------
+SQL> 
+SQL> set echo on
+SQL> ------------- Question 1b DML --------------------------------------------------
+SQL> 
+SQL> @Q1b-mau-dm.sql
+SQL> -- FIT9132 Assignment 2 2020 S2
+SQL> -- Sample Solution
+SQL> 
+SQL> /*
+SQL>(b) For the following tasks, your SQL must correctly manage transactions and use sequences to generate new primary keys for numeric primary key values
+SQL>(under no circumstances may a new primary key value be hardcoded as a number or value). Your answers for these tasks must be placed in the supplied SQL
+SQL>Script Q1b-mau-dm.sql
+SQL>(i) Create sequences which will allow entry of data into the AW_STATUS, AW_DISPLAY and SALE tables - the sequences must begin at 300 and go up in steps
+SQL>of 1 (i.e., the first value is 300, the next 301, etc.)
+SQL>*/
+SQL> DROP SEQUENCE aw_status_seq;
+
+Error starting at line : 11 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q1b-mau-dm.sql
+In command -
+DROP SEQUENCE aw_status_seq
+Error report -
+ORA-02289: sequence does not exist
+02289. 00000 -  "sequence does not exist"
+*Cause:    The specified sequence does not exist, or the user does
+           not have the required privilege to perform this operation.
+*Action:   Make sure the sequence name is correct, and that you have
+           the right to perform the desired operation on this sequence.
+SQL> 
+SQL> DROP SEQUENCE aw_display_seq;
+
+Error starting at line : 13 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q1b-mau-dm.sql
+In command -
+DROP SEQUENCE aw_display_seq
+Error report -
+ORA-02289: sequence does not exist
+02289. 00000 -  "sequence does not exist"
+*Cause:    The specified sequence does not exist, or the user does
+           not have the required privilege to perform this operation.
+*Action:   Make sure the sequence name is correct, and that you have
+           the right to perform the desired operation on this sequence.
+SQL> 
+SQL> DROP SEQUENCE sale_seq;
+
+Error starting at line : 15 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q1b-mau-dm.sql
+In command -
+DROP SEQUENCE sale_seq
+Error report -
+ORA-02289: sequence does not exist
+02289. 00000 -  "sequence does not exist"
+*Cause:    The specified sequence does not exist, or the user does
+           not have the required privilege to perform this operation.
+*Action:   Make sure the sequence name is correct, and that you have
+           the right to perform the desired operation on this sequence.
+SQL> 
+SQL> CREATE SEQUENCE aw_status_seq START WITH 300;
+
+Sequence AW_STATUS_SEQ created.
+
+SQL> 
+SQL> CREATE SEQUENCE aw_display_seq START WITH 300;
+
+Sequence AW_DISPLAY_SEQ created.
+
+SQL> 
+SQL> CREATE SEQUENCE sale_seq START WITH 300;
+
+Sequence SALE_SEQ created.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*
+SQL>(b) For the following tasks, your SQL must correctly manage transactions and use sequences to generate new primary keys for numeric primary key values
+SQL>(under no circumstances may a new primary key value be hardcoded as a number or value). Your answers for these tasks must be placed in the supplied SQL
+SQL>Script Q1b-mau-dm.sql
+SQL>You can use the following artwork statuses with an artwork as and when required:
+SQL>W -  in MAU storage at the MAU central warehouse
+SQL>T - in transit (being shipped to/from a gallery), include to/from which gallery id
+SQL>G - located at the gallery, include gallery id
+SQL>S -  sold, or
+SQL>R - returned to the artist
+SQL>(ii) Suppose now it is 10 AM on 22nd October 2020 and an artwork called "Saint Catherine of Siena" has just been received by MAU central warehouse by the
+SQL>artist with artist code 17. The minimum price at which this artist wants to sell this masterpiece is $500,000. Take the necessary steps in the database
+SQL>to record the required activities for this new arrival.
+SQL>*/
+SQL> INSERT INTO artwork VALUES (
+  2      17,
+  3      (
+  4          SELECT
+  5              artist_noworks + 1
+  6          FROM
+  7              artist
+  8          WHERE
+  9              artist_code = 17
+ 10      ),
+ 11      'Saint Catherine of Siena',
+ 12      500000,
+ 13      TO_DATE('22-Oct-2020', 'DD-MON-YYYY')
+ 14  );
+
+1 row inserted.
+
+SQL> 
+SQL> UPDATE artist
+  2  SET
+  3      artist_noworks = artist_noworks + 1
+  4  WHERE
+  5      artist_code = 17;
+
+1 row updated.
+
+SQL> 
+SQL> INSERT INTO aw_status VALUES (
+  2      aw_status_seq.NEXTVAL,
+  3      17,
+  4      (
+  5          SELECT
+  6              artist_noworks
+  7          FROM
+  8              artist
+  9          WHERE
+ 10              artist_code = 17
+ 11      ),
+ 12      TO_DATE('22-Oct-2020 10:00', 'DD-MON-YYYY HH24:MI'),
+ 13      'W',
+ 14      NULL
+ 15  );
+
+1 row inserted.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*
+SQL>(b) For the following tasks, your SQL must correctly manage transactions and use sequences to generate new primary keys for numeric primary key values
+SQL>(under no circumstances may a new primary key value be hardcoded as a number or value). Your answers for these tasks must be placed in the supplied SQL
+SQL>Script Q1b-mau-dm.sql
+SQL>You can use the following artwork statuses with an artwork as and when required:
+SQL>W -  in MAU storage at the MAU central warehouse
+SQL>T - in transit (being shipped to/from a gallery), include to/from which gallery id
+SQL>G - located at the gallery, include gallery id
+SQL>S -  sold, or
+SQL>R - returned to the artist
+SQL>(iii) From time to time, take the necessary steps in the database to record the following required activities.* No other artworks have been added by this
+SQL>artist (artist code 17).*
+SQL>a) On the same day at 11 AM, this new arrival is sent to Karma Art gallery (Ph:0413432569).
+SQL>b) It is received by the gallery in 3 hours and 15 minutes. MAU is immediately informed of the safe arrival of this extremely precious artwork through a
+SQL>telephone call.
+SQL>c) On the next day the gallery places the artwork on display for a total of 10 days.
+SQL>*/
+SQL> -- iii a
+SQL> INSERT INTO aw_status VALUES (
+  2      aw_status_seq.NEXTVAL,
+  3      17,
+  4      (
+  5          SELECT
+  6              artist_noworks
+  7          FROM
+  8              artist
+  9          WHERE
+ 10              artist_code = 17
+ 11      ),
+ 12      TO_DATE('22-Oct-2020 11:00', 'DD-MON-YYYY HH24:MI'),
+ 13      'T',
+ 14      (
+ 15          SELECT
+ 16              gallery_id
+ 17          FROM
+ 18              gallery
+ 19          WHERE
+ 20              gallery_phone = '0413432569'
+ 21      )
+ 22  );
+
+1 row inserted.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> -- iii b
+SQL> INSERT INTO aw_status VALUES (
+  2      aw_status_seq.NEXTVAL,
+  3      17,
+  4      (
+  5          SELECT
+  6              artist_noworks
+  7          FROM
+  8              artist
+  9          WHERE
+ 10              artist_code = 17
+ 11      ),
+ 12      TO_DATE('22-Oct-2020 11:00', 'DD-MON-YYYY HH24:MI') + 3 / 24 + ( 1 / (60*24) ) * 15,
+ 13      'G',
+ 14      (
+ 15          SELECT
+ 16              gallery_id
+ 17          FROM
+ 18              gallery
+ 19          WHERE
+ 20              gallery_phone = '0413432569'
+ 21      )
+ 22  );
+
+1 row inserted.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> -- iii c
+SQL> INSERT INTO aw_display VALUES (
+  2      aw_display_seq.NEXTVAL,
+  3      17,
+  4      (
+  5          SELECT
+  6              artist_noworks
+  7          FROM
+  8              artist
+  9          WHERE
+ 10              artist_code = 17
+ 11      ),
+ 12      TO_DATE('22-Oct-2020', 'DD-MON-YYYY') + 1,
+ 13      TO_DATE('22-Oct-2020', 'DD-MON-YYYY') + 10,
+ 14      (
+ 15          SELECT
+ 16              gallery_id
+ 17          FROM
+ 18              gallery
+ 19          WHERE
+ 20              gallery_phone = '0413432569'
+ 21      )
+ 22  );
+
+1 row inserted.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*
+SQL>(b) For the following tasks, your SQL must correctly manage transactions and use sequences to generate new primary keys for numeric primary key values
+SQL>(under no circumstances may a new primary key value be hardcoded as a number or value). Your answers for these tasks must be placed in the supplied SQL
+SQL>Script Q1b-mau-dm.sql
+SQL>You can use the following artwork statuses with an artwork as and when required:
+SQL>W -  in MAU storage at the MAU central warehouse
+SQL>T - in transit (being shipped to/from a gallery), include to/from which gallery id
+SQL>G - located at the gallery, include gallery id
+SQL>S -  sold, or
+SQL>R - returned to the artist
+SQL>(iv) Today is the 5th day since this artwork has been displayed. It is now sold to a customer (customer id 1) for $850,000. Take the necessary steps in
+SQL>the database to record the required activities.
+SQL>*/
+SQL> INSERT INTO sale VALUES (
+  2      sale_seq.NEXTVAL,
+  3      TO_DATE('22-Oct-2020', 'DD-MON-YYYY') + 5,
+  4      850000.00,
+  5      1,
+  6      (
+  7          SELECT
+  8              MAX(aw_display_id)
+  9          FROM
+ 10              aw_display
+ 11      )
+ 12  );
+
+1 row inserted.
+
+SQL> 
+SQL> INSERT INTO aw_status VALUES (
+  2      aw_status_seq.NEXTVAL,
+  3      17,
+  4      (
+  5          SELECT
+  6              artist_noworks
+  7          FROM
+  8              artist
+  9          WHERE
+ 10              artist_code = 17
+ 11      ),
+ 12      TO_DATE('22-Oct-2020 14:30', 'DD-MON-YYYY HH24:MI') + 5,
+ 13      'S',
+ 14      NULL
+ 15  );
+
+1 row inserted.
+
+SQL> 
+SQL> UPDATE artist
+  2  SET
+  3      artist_noworks = artist_noworks - 1
+  4  WHERE
+  5      artist_code = 17;
+
+1 row updated.
+
+SQL> 
+SQL> UPDATE aw_display
+  2  SET
+  3      aw_display_end_date = TO_DATE('22-Oct-2020', 'DD-MON-YYYY') + 5
+  4  WHERE
+  5      aw_display_id = (
+  6          SELECT
+  7              MAX(aw_display_id)
+  8          FROM
+  9              aw_display
+ 10      );
+
+1 row updated.
+
+SQL> 
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> set echo on
+SQL> --============================== END Q1 RUN ======================================---
+SQL> set echo off

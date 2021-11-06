@@ -1,0 +1,383 @@
+SQL> --============================== START Q3 RUN ======================================---
+SQL> @Q3-mau-mods.sql
+SQL> -- FIT2094 Assignment 2 2020 S2
+SQL> -- Sample Solution
+SQL> 
+SQL> /*TASK 3: Design Modifications
+SQL>Your answers for these tasks must be placed in the supplied SQL Script Q3-mau-mods.sql
+SQL>These tasks should be attempted only after task 1 and task 2 have been successfully completed. They are to be completed on the "live" database ie.
+SQL>the database with the data loaded from your previous work.
+SQL>*/
+SQL> 
+SQL> /*(i) MAU would like to be able to easily determine the total number of times each customer
+SQL>has bought an artwork. Add a new attribute which will record this requirement.
+SQL>
+SQL>Based on the data which is currently stored in the system​, this attribute must be initialised
+SQL>to the correct current number of times each customer has bought an artwork.
+SQL>*/
+SQL> 
+SQL> ALTER TABLE customer ADD customer_sale_count NUMBER(3) default 0;
+
+Table CUSTOMER altered.
+
+SQL> 
+SQL> COMMENT ON COLUMN customer.customer_sale_count IS
+  2      'No. of times customer bought an artwork';
+
+Comment created.
+
+SQL> 
+SQL> UPDATE customer
+  2  SET
+  3      customer_sale_count = (
+  4          SELECT
+  5              COUNT(*)
+  6          FROM
+  7              sale
+  8          WHERE
+  9              customer_id = customer.customer_id
+ 10      );
+
+10 rows updated.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> /*(ii) For each artwork that has been sold, MAU would like to record i) the commission in
+SQL>dollars that should be paid to them ii) the commission in dollars that should be paid to the
+SQL>gallery and iii) the actual payment in dollars that should be made to the artist.
+SQL>
+SQL>Based on the data which is currently stored in the system​, change the database to meet
+SQL>this requirement such that these individual amounts are now also readily available in the
+SQL>database for all sales which have taken place. You may assume that the current
+SQL>percentage commissions were the same when the artwork was sold.
+SQL>*/
+SQL> 
+SQL> ALTER TABLE sale ADD sale_mau_comm_amt NUMBER(9, 2);
+
+Table SALE altered.
+
+SQL> 
+SQL> ALTER TABLE sale ADD sale_gall_comm_amt NUMBER(9, 2);
+
+Table SALE altered.
+
+SQL> 
+SQL> ALTER TABLE sale ADD sale_artist_act_pay_amt NUMBER(9, 2);
+
+Table SALE altered.
+
+SQL> 
+SQL> COMMENT ON COLUMN sale.sale_mau_comm_amt IS
+  2      'Commission to MAU in dollars';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN sale.sale_gall_comm_amt IS
+  2      'Commission to Gallery in dollars';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN sale.sale_artist_act_pay_amt IS
+  2      'Actual Payment to Artist in dollars';
+
+Comment created.
+
+SQL> 
+SQL> UPDATE sale sal
+  2  SET
+  3      sale_mau_comm_amt = sale_price * 0.2,
+  4      sale_gall_comm_amt = sale_price * (
+  5          SELECT
+  6              gallery_sale_percent
+  7          FROM
+  8              gallery
+  9          WHERE
+ 10              gallery_id = (
+ 11                  SELECT
+ 12                      gallery_id
+ 13                  FROM
+ 14                      aw_display
+ 15                  WHERE
+ 16                      aw_display_id = sal.aw_display_id
+ 17              )
+ 18      ) / 100,
+ 19      sale_artist_act_pay_amt = sale_price - ( sale_price * 0.2 ) - sale_price * (
+ 20          SELECT
+ 21              gallery_sale_percent
+ 22          FROM
+ 23              gallery
+ 24          WHERE
+ 25              gallery_id = (
+ 26                  SELECT
+ 27                      gallery_id
+ 28                  FROM
+ 29                      aw_display
+ 30                  WHERE
+ 31                      aw_display_id = sal.aw_display_id
+ 32              )
+ 33      ) / 100;
+
+4 rows updated.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> ALTER TABLE sale MODIFY
+  2      sale_mau_comm_amt NUMBER(9, 2) NOT NULL;
+
+Table SALE altered.
+
+SQL> 
+SQL> ALTER TABLE sale MODIFY
+  2      sale_gall_comm_amt NUMBER(9, 2) NOT NULL;
+
+Table SALE altered.
+
+SQL> 
+SQL> ALTER TABLE sale MODIFY
+  2      sale_artist_act_pay_amt NUMBER(9, 2) NOT NULL;
+
+Table SALE altered.
+
+SQL> 
+SQL> 
+SQL> /*(iii) MAU have observed that Galleries often display several items from the MAU stock
+SQL>with the same starting date and for the same period. They in effect create a Gallery
+SQL>Exhibition themed around a particular artist, media or other theme. To better record, and
+SQL>publicise, these exhibitions MAU would like to record a numeric exhibition code as an
+SQL>identifier, the name for the exhibition, the theme of the exhibition ( A: artist, M: media, or O:
+SQL>other), the details of the artworks which are displayed and the total number of artworks
+SQL>which make up the exhibition. An exhibition must contain at least one artwork.
+SQL>
+SQL>Based on the data that is currently stored in the system, change the database to meet this
+SQL>requirement. Add an exhibition themed around a particular artist for one of your galleries
+SQL>using the artworks you have on display from Q1(a). You may hardcode the gallery id,
+SQL>artist code and display start and end dates.
+SQL>
+SQL>*/
+SQL> 
+SQL> DROP TABLE exhibition PURGE;
+
+Error starting at line : 123 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q3-mau-mods.sql
+In command -
+DROP TABLE exhibition PURGE
+Error report -
+ORA-00942: table or view does not exist
+00942. 00000 -  "table or view does not exist"
+*Cause:    
+*Action:
+SQL> 
+SQL> DROP SEQUENCE exhibition_seq;
+
+Error starting at line : 125 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q3-mau-mods.sql
+In command -
+DROP SEQUENCE exhibition_seq
+Error report -
+ORA-02289: sequence does not exist
+02289. 00000 -  "sequence does not exist"
+*Cause:    The specified sequence does not exist, or the user does
+           not have the required privilege to perform this operation.
+*Action:   Make sure the sequence name is correct, and that you have
+           the right to perform the desired operation on this sequence.
+SQL> 
+SQL> ALTER TABLE aw_display DROP COLUMN exhibition_id;
+
+Error starting at line : 127 File @ C:\Users\minhv\OneDrive\Desktop\_ToStudent_FIT2094\Ass2SampleSolution\Q3-mau-mods.sql
+In command -
+ALTER TABLE aw_display DROP COLUMN exhibition_id
+Error report -
+ORA-00904: "EXHIBITION_ID": invalid identifier
+00904. 00000 -  "%s: invalid identifier"
+*Cause:    
+*Action:
+SQL> 
+SQL> CREATE SEQUENCE exhibition_seq;
+
+Sequence EXHIBITION_SEQ created.
+
+SQL> 
+SQL> CREATE TABLE exhibition (
+  2      exhibition_id             NUMBER(5),
+  3      exhibition_name           VARCHAR2(50) NOT NULL,
+  4      exhibition_theme          CHAR(1) NOT NULL,
+  5      exhibition_artwork_count  NUMBER(3) NOT NULL
+  6  );
+
+Table EXHIBITION created.
+
+SQL> 
+SQL> COMMENT ON COLUMN exhibition.exhibition_id IS
+  2      'Exhibition ID';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN exhibition.exhibition_name IS
+  2      'Exhibition Name';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN exhibition.exhibition_theme IS
+  2      'Exhibition Theme
+  3  A - Artist
+  4  M - Media
+  5  O - Other
+  6  ';
+
+Comment created.
+
+SQL> 
+SQL> COMMENT ON COLUMN exhibition.exhibition_artwork_count IS
+  2      'Number of Artworks in an exhibition';
+
+Comment created.
+
+SQL> 
+SQL> ALTER TABLE exhibition ADD CONSTRAINT exhibition_pk PRIMARY KEY ( exhibition_id );
+
+Table EXHIBITION altered.
+
+SQL> 
+SQL> ALTER TABLE exhibition
+  2      ADD CONSTRAINT exhibition_chk CHECK ( exhibition_theme IN ( 'A', 'M', 'O' ) );
+
+Table EXHIBITION altered.
+
+SQL> 
+SQL> ALTER TABLE exhibition
+  2      ADD CONSTRAINT exhibition_chk2 CHECK ( exhibition_artwork_count > 0 );
+
+Table EXHIBITION altered.
+
+SQL> 
+SQL> ALTER TABLE aw_display ADD exhibition_id NUMBER(5);
+
+Table AW_DISPLAY altered.
+
+SQL> 
+SQL> COMMENT ON COLUMN aw_display.exhibition_id IS
+  2      'Exhibition ID';
+
+Comment created.
+
+SQL> 
+SQL> alter table aw_display add constraint exhibition_aw_display foreign key (exhibition_id) references exhibition (exhibition_id);
+
+Table AW_DISPLAY altered.
+
+SQL> 
+SQL> 
+SQL> --Add an exhibition of two artworks themed around a particular artist for one of
+SQL> --your galleries using the artworks you have on display from Q1 (a).
+SQL> 
+SQL> INSERT INTO exhibition VALUES (
+  2      exhibition_seq.NEXTVAL,
+  3      'Reeba Wildman',
+  4      'A',
+  5      (select count(*) from  aw_display
+  6      WHERE
+  7          artist_code = 8
+  8      AND gallery_id  = 5
+  9      AND aw_display_start_date = TO_DATE('05-jul-2020', 'dd-mon-yyyy')
+ 10      AND aw_display_end_date = TO_DATE('18-jul-2020', 'dd-mon-yyyy'))
+ 11  );
+
+1 row inserted.
+
+SQL> 
+SQL> --artist_code = 8, aw_display_start_date = 05-jul-2020 & aw_display_end_date=to_date = 18-jul-2020
+SQL> UPDATE aw_display
+  2  SET
+  3      exhibition_id = exhibition_seq.CURRVAL
+  4  WHERE
+  5          artist_code = 8
+  6      AND gallery_id  = 5
+  7      AND aw_display_start_date = TO_DATE('05-jul-2020', 'dd-mon-yyyy')
+  8      AND aw_display_end_date = TO_DATE('18-jul-2020', 'dd-mon-yyyy');
+
+2 rows updated.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> 
+SQL> -- Note added exhibition data will appear to be incorrect due to use of marking data
+SQL> -- SQL code was checked not the result for "Add an exhibition themed around a particular 
+SQL> -- artist for one of your galleries using the artworks you have on display from Q1 (a)"
+SQL> 
+SQL> set echo off
+
+Session altered.
+
+SQL> 
+SQL> select * from customer order by customer_id;
+
+CUSTOMER_ID CUSTOMER_GNAME                                     CUSTOMER_FNAME                                     CUSTOMER_BUSNAME                                                                                     CUSTOMER_STREET                                    CUSTOMER_TOWN                                      CUS CUSTOMER_P CUSTOMER_SALE_COUNT
+----------- -------------------------------------------------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- -------------------------------------------------- -------------------------------------------------- --- ---------- -------------------
+          1 Florida                                            Goldhawk                                                                                                                                                904 Talmadge Lane                                  Belgrave                                           VIC 0454762942                   1
+          2 Marina                                             Clements                                                                                                                                                4632 Monica Plaza                                  Belgrave South                                     VIC 0425271315                   0
+          3 Stefanie                                           Wilstead                                                                                                                                                1723 Dottie Parkway                                Pakenham                                           VIC 0452272267                   1
+          4                                                                                                       Quinlan Temperley Pvt. Ltd.                                                                          1 Kinsman Terrace                                  Melbourne                                          VIC 0475110074                   0
+          5 Lois                                               Hawkshaw                                                                                                                                                7480 Center Crossing                               Pakenham Upper                                     VIC 0458708402                   0
+          6 Reinald                                            Sedwick                                                                                                                                                 2422 Calypso Circle                                Leongatha                                          VIC 0489832003                   0
+          7 Jobie                                              Pheazey                                                                                                                                                 03 New Castle Center                               Leongatha                                          VIC 0475761206                   2
+          8                                                                                                       Rochelle Zecchinii Pvt. Ltd.                                                                         10 Forest Dale Terrace                             Melbourne                                          VIC 0409646679                   0
+          9 Danila                                             Geraldo                                                                                                                                                 9 Londonderry Parkway                              Leongatha                                          VIC 0464179129                   0
+         10 Haleigh                                            Bonifacio                                                                                                                                               93 Buell Lane                                      Malvern East                                       VIC 0480445917                   0
+
+10 rows selected. 
+
+SQL> 
+SQL> select * from sale order by sale_id;
+
+   SALE_ID SALE_DATE   SALE_PRICE CUSTOMER_ID AW_DISPLAY_ID SALE_MAU_COMM_AMT SALE_GALL_COMM_AMT SALE_ARTIST_ACT_PAY_AMT
+---------- ----------- ---------- ----------- ------------- ----------------- ------------------ -----------------------
+         1 15 Jun 2019      49000           1             1              9800               5047                   34153
+         2 16 Jun 2019      38000           3             3              7600               3914                   26486
+         3 19 Jun 2019      32000           7             4              6400               3296                   22304
+         4 12 Nov 2019      60000           7            12             12000               6300                   41700
+
+SQL> 
+SQL> select * from aw_display order by aw_display_id;
+
+AW_DISPLAY_ID ARTIST_CODE ARTWORK_NO AW_DISPLAY_ AW_DISPLAY_ GALLERY_ID EXHIBITION_ID
+------------- ----------- ---------- ----------- ----------- ---------- -------------
+            1           1          1 14 Jun 2019 15 Jun 2019          2              
+            2           2          1 14 Jun 2019 20 Jun 2019          2              
+            3           3          1 14 Jun 2019 16 Jun 2019          2              
+            4           4          1 14 Jun 2019 19 Jun 2019          2              
+            5           8          1 14 Jun 2019 20 Jun 2019          2              
+            6           2          1 07 Nov 2019 19 Nov 2019          5              
+            7           8          1 07 Nov 2019 19 Nov 2019          5              
+            8           5          1 07 Nov 2019 19 Nov 2019          5              
+            9           9          1 07 Nov 2019 19 Nov 2019          5              
+           10          10          1 07 Nov 2019 19 Nov 2019          5              
+           11          21          1 07 Nov 2019 19 Nov 2019          5              
+           12          19          1 07 Nov 2019 12 Nov 2019          5              
+           13           2          1 05 Jul 2020 18 Jul 2020          5              
+           14           8          1 05 Jul 2020 18 Jul 2020          5             1
+           15           1          2 05 Jul 2020 10 Jul 2020          5              
+           16           8          2 05 Jul 2020 18 Jul 2020          5             1
+           17           5          2 05 Jul 2020 18 Jul 2020          5              
+           18           1          2 21 Jul 2020 26 Jul 2020          5              
+
+18 rows selected. 
+
+SQL> 
+SQL> set echo on
+SQL> --============================== END Q3 RUN ======================================---
+SQL> set echo off
