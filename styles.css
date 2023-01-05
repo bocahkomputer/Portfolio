@@ -1,0 +1,34 @@
+h1 {
+    text-align: center;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+}
+
+.delete-all {
+    margin-bottom: 1em;
+}
+
+.table-cell-left {
+    text-align: left;
+}
+
+.email-form-control {
+    width: 500px;
+}
+
+textarea.email-form-control {
+    height: 10em;
+}
